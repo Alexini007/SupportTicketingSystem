@@ -1,1 +1,24 @@
-.vs/
+# Ignore build artifacts
+bin/
+obj/
+*.pdb
+*.dll
+*.exe
+*.cache
+*.nuget.g.props
+*.nuget.g.targets
+*.user
+*.vs/
+.vscode/
+
+# Ignore NuGet dependencies
+project.assets.json
+project.nuget.cache
+
+# Ignore Static Web Assets
+staticwebassets.*
+SupportTicketingSystem/obj/Debug/net8.0/staticwebassets.*
+
+# Ignore build files
+SupportTicketingSystem/bin/
+SupportTicketingSystem/obj/
