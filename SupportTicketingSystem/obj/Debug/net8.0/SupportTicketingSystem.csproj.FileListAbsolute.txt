@@ -281,10 +281,10 @@ D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTi
 D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTicketingSystem\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.SupportTicketingSystem.props
 D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTicketingSystem\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.SupportTicketingSystem.props
 D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTicketingSystem\obj\Debug\net8.0\staticwebassets.pack.json
-D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTicketingSystem\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTicketingSystem\obj\Debug\net8.0\SupportT.FA258BE7.Up2Date
 D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTicketingSystem\obj\Debug\net8.0\SupportTicketingSystem.dll
 D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTicketingSystem\obj\Debug\net8.0\refint\SupportTicketingSystem.dll
 D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTicketingSystem\obj\Debug\net8.0\SupportTicketingSystem.pdb
 D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTicketingSystem\obj\Debug\net8.0\SupportTicketingSystem.genruntimeconfig.cache
 D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTicketingSystem\obj\Debug\net8.0\ref\SupportTicketingSystem.dll
+D:\AUBG\08_INF440 Technologies for Web-based IS\SupportTicketingSystem\SupportTicketingSystem\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
