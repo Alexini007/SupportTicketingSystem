@@ -10,10 +10,13 @@ obj/
 *.user
 *.vs/
 .vscode/
+*.suo
+.vscode/settings.json
 
 # Ignore NuGet dependencies
 project.assets.json
 project.nuget.cache
+packages/
 
 # Ignore Static Web Assets
 staticwebassets.*
@@ -22,3 +25,7 @@ SupportTicketingSystem/obj/Debug/net8.0/staticwebassets.*
 # Ignore build files
 SupportTicketingSystem/bin/
 SupportTicketingSystem/obj/
+
+# Ignore Entity Framework Migrations Snapshot Files (Optional)
+Migrations/*.Designer.cs
+Migrations/*.resx
