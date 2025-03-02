@@ -29,3 +29,4 @@ SupportTicketingSystem/obj/
 # Ignore Entity Framework Migrations Snapshot Files (Optional)
 Migrations/*.Designer.cs
 Migrations/*.resx
+/SupportTicketingSystem/App_Data
