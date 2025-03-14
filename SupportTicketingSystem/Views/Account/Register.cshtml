@@ -1,54 +1,49 @@
 ﻿@model RegisterViewModel
 
-<h2>Register</h2>
-<form asp-action="Register" method="post">
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
+<h2 class="text-center">Register</h2>
 
-    <div class="form-group">
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">  
-        <label for="ConfirmPassword">Confirm Password</label>
-        <input asp-for="ConfirmPassword" type="password" class="form-control" />
-        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label for="FullName">Full Name</label>
-        <input asp-for="FullName" class="form-control" />
-        <span asp-validation-for="FullName" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Team"></label>
-        <select asp-for="Team" class="form-control">
-            <option value="">** Select Team **</option>
-            <option value="Development">Development</option>
-            <option value="Support">Support</option>
-            <option value="Sales">Sales</option>
-        </select>
-        <span asp-validation-for="Team" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn custom-register-btn mt-2">Register</button>
-
-    @if (!ViewData.ModelState.IsValid)
-    {
-        <div class="text-danger">
-            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-            {
-                <p>@error.ErrorMessage</p>
-            }
+<div class="container d-flex justify-content-center">
+    <form asp-action="Register" method="post" class="w-50">
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
-    }
-</form>
+
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">  
+            <label for="ConfirmPassword">Confirm Password</label>
+            <input asp-for="ConfirmPassword" type="password" class="form-control" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="FullName">Full Name</label>
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Team"></label>
+            <select asp-for="Team" class="form-control">
+                <option value="">** Select Team **</option>
+                <option value="Development">Development</option>
+                <option value="Support">Support</option>
+                <option value="Sales">Sales</option>
+            </select>
+            <span asp-validation-for="Team" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn custom-register-btn mt-2">Register</button>
+    </form>
+</div>
+
+
 <style>
     .custom-register-btn {
         background-color: #6767d6 !important;
@@ -58,7 +53,11 @@
         transition: background-color 0.3s ease-in-out;
     }
 
-        .custom-register-btn:hover {
+    .custom-register-btn:hover {
             background-color: #5757c6 !important;
-        }
+    }
+
+    .container {
+        max-width: 800px;
+    }
 </style>

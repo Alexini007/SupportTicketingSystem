@@ -2,7 +2,19 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@inject Microsoft.AspNetCore.Identity.UserManager<SupportTicketingSystem.Data.ApplicationUser> UserManager
+
+<div class="container text-center mt-5">
+    @if (User.Identity.IsAuthenticated)
+    {
+        var user = await UserManager.GetUserAsync(User);
+        <h1>Welcome to STS, @user.FullName!</h1>
+    }
+    else
+    {
+        <h1>Welcome to STS!</h1>
+        <p>Register or Login to get started.</p>
+        <a href="@Url.Action("Register", "Account")" class="btn btn-primary">Register</a>
+        <a href="@Url.Action("Login", "Account")" class="btn btn-secondary">Login</a>
+    }
 </div>

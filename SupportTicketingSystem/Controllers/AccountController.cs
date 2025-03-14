@@ -74,7 +74,7 @@ public class AccountController : Controller
         var user = await _userManager.FindByEmailAsync(model.Email);
         if (user == null)
         {
-            ModelState.AddModelError(string.Empty, "Invalid email or password.");
+            ModelState.AddModelError(string.Empty, "This email is not registered in the system.");
             return View(model);
         }
 
@@ -84,7 +84,7 @@ public class AccountController : Controller
             return RedirectToAction("Index", "Home");
         }
 
-        ModelState.AddModelError(string.Empty, "Invalid email or password.");
+        ModelState.AddModelError(string.Empty, "Incorrect password. Please try again.");
         return View(model);
     }
 

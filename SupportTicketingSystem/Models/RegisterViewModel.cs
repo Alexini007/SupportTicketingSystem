@@ -9,7 +9,7 @@ public class RegisterViewModel
 
     [Required(ErrorMessage = "Password is required.")]
     [MinLength(5, ErrorMessage = "Password must be at least 5 characters long.")]
-    [RegularExpression(@"^[A-Za-z](?=.*\d)(?=.*[A-Za-z]).*$", ErrorMessage = "Password must start with a letter and contain both letters and numbers.")]
+    [RegularExpression(@"^[A-Za-z](?=.*\d)(?=.*[A-Za-z])[A-Za-z\d\W_]{4,}$", ErrorMessage = "Password must start with a letter, contain at least one number, and be at least 5 characters long.")]
     [DataType(DataType.Password)]
     public string Password { get; set; }
 
