@@ -28,7 +28,7 @@ public class AccountController : Controller
     {
         if (!ModelState.IsValid)
         {
-            return View(model);  // Show validation errors properly
+            return View(model);
         }
 
         var user = new ApplicationUser
@@ -44,7 +44,7 @@ public class AccountController : Controller
         if (result.Succeeded)
         {
             await _signInManager.SignInAsync(user, isPersistent: false);
-            return RedirectToAction("Index", "Home"); // Redirect after successful registration
+            return RedirectToAction("Index", "Home"); 
         }
 
         foreach (var error in result.Errors)
@@ -61,6 +61,7 @@ public class AccountController : Controller
     {
         return View();
     }
+
     // POST: /Account/Login
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -78,10 +79,16 @@ public class AccountController : Controller
             return View(model);
         }
 
-        var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+        var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, true);
+
         if (result.Succeeded)
         {
             return RedirectToAction("Index", "Home");
+        }
+        else if (result.IsLockedOut)
+        {
+            ModelState.AddModelError(string.Empty, "Your account is locked due to multiple failed login attempts. Please try again later.");
+            return View(model);
         }
 
         ModelState.AddModelError(string.Empty, "Incorrect password. Please try again.");

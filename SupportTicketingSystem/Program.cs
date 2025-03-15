@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using SupportTicketingSystem.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,24 +26,19 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireLowercase = false;
+
+    options.Lockout.MaxFailedAccessAttempts = 10; 
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10); 
+    options.Lockout.AllowedForNewUsers = true;
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(15); 
+    options.SlidingExpiration = true;
 });
 
 var app = builder.Build();
-
-
-app.Use(async (context, next) =>
-{
-    try
-    {
-        await context.SignOutAsync(IdentityConstants.ApplicationScheme);
-        Console.WriteLine("All users logged out on application startup.");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error logging out users: {ex.Message}");
-    }
-    await next();
-});
 
 if (!app.Environment.IsDevelopment())
 {
