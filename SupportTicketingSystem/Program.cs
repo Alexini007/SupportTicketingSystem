@@ -26,7 +26,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireLowercase = false;
-
+    options.User.RequireUniqueEmail = true;
     options.Lockout.MaxFailedAccessAttempts = 10; 
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10); 
     options.Lockout.AllowedForNewUsers = true;
