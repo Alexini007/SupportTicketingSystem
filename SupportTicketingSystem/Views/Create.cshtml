@@ -1,0 +1,29 @@
+﻿@model SupportTicketingSystem.Models.Ticket
+
+@{
+    ViewData["Title"] = "Create New Ticket";
+}
+
+<h2>Create New Ticket</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="TeamId">Team</label>
+        <select asp-for="TeamId" class="form-control">
+            <option value="">Select Team</option>
+            @foreach (var team in ViewData["TeamId"] as SelectList)
+            {
+                <option value="@team.Value">@team.Text</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
