@@ -1,0 +1,39 @@
+﻿@model SupportTicketingSystem.Data.Ticket
+
+<h2>Create New Ticket</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Subject"></label>
+        <input asp-for="Subject" class="form-control" />
+        <span asp-validation-for="Subject" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Team"></label>
+        <select asp-for="Team" class="form-control">
+            <option value="Development">Development</option>
+            <option value="Support">Support</option>
+            <option value="Sales">Sales</option>
+        </select>
+        <span asp-validation-for="Team" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Status"></label>
+        <select asp-for="Status" class="form-control">
+            <option value="new">New</option>
+            <option value="open">Open</option>
+            <option value="closed">Closed</option>
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Ticket</button>
+</form>
