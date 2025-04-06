@@ -1,39 +1,49 @@
 ﻿@model SupportTicketingSystem.Data.Ticket
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<h2>Create New Ticket</h2>
+<h2 class="text-center mt-4">Create New Ticket</h2>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="Subject"></label>
-        <input asp-for="Subject" class="form-control" />
-        <span asp-validation-for="Subject" class="text-danger"></span>
-    </div>
+<div class="container d-flex justify-content-center">
+    <form asp-action="Create" method="post" class="w-100 w-md-75 w-lg-50">
 
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
+        <div class="form-group mb-3">
+            <label asp-for="Subject" class="form-label"></label>
+            <input asp-for="Subject" class="form-control" />
+            <span asp-validation-for="Subject" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="Team"></label>
-        <select asp-for="Team" class="form-control">
-            <option value="Development">Development</option>
-            <option value="Support">Support</option>
-            <option value="Sales">Sales</option>
-        </select>
-        <span asp-validation-for="Team" class="text-danger"></span>
-    </div>
+        <div class="form-group mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="Status"></label>
-        <select asp-for="Status" class="form-control">
-            <option value="new">New</option>
-            <option value="open">Open</option>
-            <option value="closed">Closed</option>
-        </select>
-        <span asp-validation-for="Status" class="text-danger"></span>
-    </div>
+        <div class="form-group mb-3">
+            <label asp-for="Team" class="form-label"></label>
+            <select asp-for="Team" class="form-control">
+                <option value="">-- Select Team --</option>
+                <option value="Development">Development</option>
+                <option value="Support">Support</option>
+                <option value="Sales">Sales</option>
+            </select>
+            <span asp-validation-for="Team" class="text-danger"></span>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Create Ticket</button>
-</form>
+        <div class="form-group mb-3">
+            <label asp-for="Status" class="form-label"></label>
+            <select asp-for="Status" class="form-control">
+                <option value="">-- Select Status --</option>
+                <option value="new">New</option>
+                <option value="open">Open</option>
+                <option value="closed">Closed</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Create Ticket</button>
+        </div>
+    </form>
+</div>

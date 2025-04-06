@@ -1,33 +1,33 @@
 ﻿@model RegisterViewModel
 
-<h2 class="text-center">Register</h2>
+<h2 class="text-center mt-4">Register</h2>
 
 <div class="container d-flex justify-content-center">
-    <form asp-action="Register" method="post" class="w-50">
+    <form asp-action="Register" method="post" class="w-100 w-md-75 w-lg-50 mx-auto">
 
-        <div class="form-group">
-            <label asp-for="Email"></label>
+        <div class="form-group mb-3">
+            <label asp-for="Email" class="form-label"></label>
             <input asp-for="Email" class="form-control" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
-        <div class="form-group">
-            <label asp-for="Password"></label>
+        <div class="form-group mb-3">
+            <label asp-for="Password" class="form-label"></label>
             <input asp-for="Password" type="password" class="form-control" />
         </div>
 
-        <div class="form-group">  
-            <label for="ConfirmPassword">Confirm Password</label>
+        <div class="form-group mb-3">
+            <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
             <input asp-for="ConfirmPassword" type="password" class="form-control" />
         </div>
 
-        <div class="form-group">
-            <label for="FullName">Full Name</label>
+        <div class="form-group mb-3">
+            <label asp-for="FullName" class="form-label">Full Name</label>
             <input asp-for="FullName" class="form-control" />
         </div>
 
-        <div class="form-group">
-            <label asp-for="Team"></label>
+        <div class="form-group mb-3">
+            <label asp-for="Team" class="form-label"></label>
             <select asp-for="Team" class="form-control">
                 <option value="">** Select Team **</option>
                 <option value="Development">Development</option>
@@ -36,14 +36,18 @@
             </select>
         </div>
 
-        <div asp-validation-summary="All" class="text-danger"></div>
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
-        <button type="submit" class="btn custom-register-btn mt-2">Register</button>
+        <div class="d-grid">
+            <button type="submit" class="btn custom-register-btn">Register</button>
+        </div>
     </form>
 </div>
 
-
 <style>
+    .container {
+        max-width: 400px;
+    }
     .custom-register-btn {
         background-color: #6767d6 !important;
         color: white !important;
@@ -52,11 +56,7 @@
         transition: background-color 0.3s ease-in-out;
     }
 
-    .custom-register-btn:hover {
+        .custom-register-btn:hover {
             background-color: #5757c6 !important;
-    }
-
-    .container {
-        max-width: 800px;
-    }
+        }
 </style>

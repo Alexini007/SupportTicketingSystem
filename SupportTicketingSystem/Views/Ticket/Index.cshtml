@@ -1,21 +1,25 @@
 ﻿@model IEnumerable<SupportTicketingSystem.Data.Ticket>
 
-<h2>Your Recent Tickets</h2>
+<h2 class="text-center mt-4">Your Recent Tickets</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Subject</th>
-            <th>Team</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var ticket in Model)
-        {
-            <tr>
-                <td>@ticket.Subject</td>
-                <td>@ticket.Team</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th>Subject</th>
+                    <th>Team</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ticket in Model)
+                {
+                    <tr>
+                        <td>@ticket.Subject</td>
+                        <td>@ticket.Team</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
