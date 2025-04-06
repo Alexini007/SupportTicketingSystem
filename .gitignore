@@ -30,3 +30,6 @@ SupportTicketingSystem/obj/
 Migrations/*.Designer.cs
 Migrations/*.resx
 /SupportTicketingSystem/App_Data
+
+#ignoringotherfiles
+wwwroot/lib/
