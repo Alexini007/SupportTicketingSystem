@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 
 namespace SupportTicketingSystem.Data
 {
@@ -22,7 +23,9 @@ namespace SupportTicketingSystem.Data
         public DateTime CreatedAt { get; set; }
 
         // Foreign key to ApplicationUser
+        [BindNever]
         public string UserId { get; set; }
+        [BindNever]
         public ApplicationUser User { get; set; }
     }
 }

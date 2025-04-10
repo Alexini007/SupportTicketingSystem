@@ -1,9 +1,10 @@
 ﻿@model SupportTicketingSystem.Data.Ticket
-<h2 class="text-center mt-4">Create New Ticket</h2>
+
+<h2 class="text-center mt-4">Edit Ticket</h2>
 
 <div class="container d-flex justify-content-center">
-    <form asp-action="Create" method="post" class="w-100 w-md-75 w-lg-50">
-        @Html.AntiForgeryToken()
+    <form asp-action="Edit" method="post" class="w-100 w-md-50 w-lg-25 mx-auto">
+        <input type="hidden" asp-for="Id" />
 
         <div class="mb-3">
             <label asp-for="Subject" class="form-label"></label>
@@ -20,7 +21,6 @@
         <div class="mb-3">
             <label asp-for="Team" class="form-label"></label>
             <select asp-for="Team" class="form-select">
-                <option value="">-- Select Team --</option>
                 <option value="Development">Development</option>
                 <option value="Support">Support</option>
                 <option value="Sales">Sales</option>
@@ -31,7 +31,6 @@
         <div class="mb-3">
             <label asp-for="Status" class="form-label"></label>
             <select asp-for="Status" class="form-select">
-                <option value="">-- Select Status --</option>
                 <option value="new">New</option>
                 <option value="open">Open</option>
                 <option value="closed">Closed</option>
@@ -40,7 +39,7 @@
         </div>
 
         <div class="d-grid">
-            <button type="submit" class="btn btn-primary">Create Ticket</button>
+            <button type="submit" class="btn btn-success">Save Changes</button>
         </div>
     </form>
 </div>

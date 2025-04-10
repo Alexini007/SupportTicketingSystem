@@ -28,7 +28,7 @@
         }
 
         .navbar-toggler {
-            border-color: rgba(255, 255, 255, 0.8); /* white border */
+            border-color: rgba(255, 255, 255, 0.8);
         }
 
         .navbar-toggler-icon {
@@ -57,6 +57,9 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
+                                <a class="nav-link" asp-controller="Ticket" asp-action="Index">Tickets</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" asp-controller="Ticket" asp-action="Create">Add New</a>
                             </li>
                             <li class="nav-item">
@@ -73,6 +76,8 @@
                             </li>
                         }
                     </ul>
+
+
                 </div>
             </div>
         </nav>

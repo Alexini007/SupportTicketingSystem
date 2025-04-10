@@ -1,25 +1,74 @@
-﻿@model IEnumerable<SupportTicketingSystem.Data.Ticket>
+﻿@model TicketIndexViewModel
+@inject Microsoft.AspNetCore.Identity.UserManager<SupportTicketingSystem.Data.ApplicationUser> UserManager
+
+@{
+    var currentUser = await UserManager.GetUserAsync(User); // Get the logged-in user
+}
 
 <h2 class="text-center mt-4">Your Recent Tickets</h2>
 
 <div class="container">
     <div class="table-responsive">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped align-middle text-center">
             <thead class="table-light">
                 <tr>
                     <th>Subject</th>
+                    <th>Description</th>
                     <th>Team</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var ticket in Model)
+                @foreach (var ticket in Model.Tickets)
                 {
-                    <tr>
+                    var isNewTicket = (DateTime.UtcNow - ticket.CreatedAt).TotalSeconds < 5;
+                    <tr class="@(isNewTicket ? "new-ticket" : "")">
                         <td>@ticket.Subject</td>
+                        <td class="text-break">@ticket.Description</td>
                         <td>@ticket.Team</td>
+                        <td>
+                            <span class="badge
+                                @(ticket.Status == "new" ? "bg-info text-dark" :
+                                  ticket.Status == "open" ? "bg-primary" :
+                                  "bg-dark")">
+                                @ticket.Status
+                            </span>
+                        </td>
+                        <td>@ticket.CreatedAt.ToLocalTime().ToString("g")</td>
+                        <td>
+                            @if (User.Identity.IsAuthenticated && ticket.Team == Model.CurrentUserTeam)
+                            {
+                                <div class="d-flex justify-content-center">
+                                    <a asp-action="Edit" asp-route-id="@ticket.Id" class="btn btn-sm btn-success me-2">Edit</a>
+                                    <form asp-action="Delete" asp-route-id="@ticket.Id" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this ticket?');">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            }
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const rows = document.querySelectorAll(".new-ticket");
+
+            rows.forEach(row => {
+                row.style.backgroundColor = "#d2f8d2"; //makes the color of the new row different for a bit before removing it
+
+                setTimeout(() => {
+                    row.style.transition = "background-color 1s ease-out";
+                    row.style.backgroundColor = ""; // remove the background after 5 sec
+                }, 5000);
+            });
+        });
+    </script>
+}
