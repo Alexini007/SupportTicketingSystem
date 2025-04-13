@@ -36,7 +36,9 @@
 
         @if (recentTickets != null && recentTickets.Any())
         {
-            <table class="table table-hover table-striped rounded shadow-sm mt-3">
+            <div class="table-responsive-sm">
+                <table class="table table-hover table-striped rounded shadow-sm mt-3 mb-0">
+
                 <thead class="table-dark">
                     <tr>
                         <th>Subject</th>
@@ -55,6 +57,7 @@
                     }
                 </tbody>
             </table>
+            </div>
         }
         else
         {
