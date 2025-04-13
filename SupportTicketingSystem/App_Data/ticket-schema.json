@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "JSON Schema for Ticket Import",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "Subject": { "type": "string" },
+      "Description": { "type": "string" },
+      "Team": { "type": "string" },
+      "Status": { "type": "string" }
+    },
+    "required": [ "Subject", "Description", "Team", "Status" ]
+  }
+}

@@ -29,7 +29,12 @@ SupportTicketingSystem/obj/
 # Ignore Entity Framework Migrations Snapshot Files (Optional)
 Migrations/*.Designer.cs
 Migrations/*.resx
-/SupportTicketingSystem/App_Data
 
-#ignoringotherfiles
+# Ignore all files in App_Data except ticket-schema.json
+/SupportTicketingSystem/App_Data/*
+!/SupportTicketingSystem/App_Data/ticket-schema.json
+
+# Ignore all files in wwwroot/lib but allow Files/ticket-schema-example.json
 wwwroot/lib/
+wwwroot/Files/*
+!/wwwroot/Files/ticket-schema-example.json
