@@ -1,6 +1,8 @@
-{
-  "Subject": "Issue title",
-  "Description": "This issue happened due to x reasons.",
-  "Team": "Support",
-  "Status": "new"
-}
+[
+  {
+    "Subject": "Issue title",
+    "Description": "This issue happened due to x reasons.",
+    "Team": "Support",
+    "Status": "new"
+  }
+]

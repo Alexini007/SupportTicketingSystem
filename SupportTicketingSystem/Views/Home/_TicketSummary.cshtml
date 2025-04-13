@@ -1,0 +1,20 @@
+﻿@model List<SupportTicketingSystem.Models.TeamTicketSummaryViewModel>
+<table class="table table-bordered table-sm">
+    <thead>
+        <tr>
+            <th>Team Name</th>
+            <th>New Tickets</th>
+            <th>Open Tickets</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TeamName</td>
+                <td>@item.NewCount</td>
+                <td>@item.OpenCount</td>
+            </tr>
+        }
+    </tbody>
+</table>

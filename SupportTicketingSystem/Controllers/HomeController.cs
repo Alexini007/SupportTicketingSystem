@@ -1,16 +1,20 @@
-using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SupportTicketingSystem.Data;
 using SupportTicketingSystem.Models;
+using System.Diagnostics;
 
 namespace SupportTicketingSystem.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -27,6 +31,22 @@ namespace SupportTicketingSystem.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [AllowAnonymous]
+        public IActionResult TicketSummary()
+        {
+            var summary = _context.Tickets
+                .Where(t => t.Status == "new" || t.Status == "open")
+                .GroupBy(t => t.Team)
+                .Select(g => new TeamTicketSummaryViewModel
+                {
+                    TeamName = g.Key,
+                    NewCount = g.Count(t => t.Status == "new"),
+                    OpenCount = g.Count(t => t.Status == "open")
+                })
+                .ToList();
+            return PartialView("_TicketSummary", summary);
         }
     }
 }

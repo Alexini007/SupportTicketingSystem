@@ -4,19 +4,101 @@
 
 @inject Microsoft.AspNetCore.Identity.UserManager<SupportTicketingSystem.Data.ApplicationUser> UserManager
 
-<div class="container text-center mt-5">
-    @if (User.Identity.IsAuthenticated)
-    {
-        var user = await UserManager.GetUserAsync(User);
-        <h1>Welcome to STS, @user.FullName!</h1>
-    }
-    else
-    {
-        <h1>Welcome to STS!</h1>
-        <p>Register or Login to get started.</p>
-        <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
-            <a href="@Url.Action("Register", "Account")" class="btn btn-primary" style="background-color: #6767d6;">Register</a>
-            <a href="@Url.Action("Login", "Account")" class="btn btn-secondary">Login</a>
+<div class="container py-5">
+    <div class="text-center mb-5">
+        @if (User.Identity.IsAuthenticated)
+        {
+            var user = await UserManager.GetUserAsync(User);
+            <h1 class="fw-bold display-5 text-gradient mb-3"> Welcome, @user.FullName!</h1>
+            <p class="lead text-muted">We're glad to see you back. Here's your support dashboard summary.</p>
+        }
+        else
+        {
+            <h1 class="fw-bold display-5 text-custom-primary mb-3"> Welcome to STS!</h1>
+            <p class="lead text-muted">Start managing tickets by creating an account or logging in.</p>
+
+            <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+                <a href="@Url.Action("Register", "Account")" class="btn btn-custom-primary btn-lg rounded-pill px-4 shadow-sm">
+                    <i class="bi bi-person-plus-fill me-2"></i> Register
+                </a>
+                <a href="@Url.Action("Login", "Account")" class="btn btn-outline-custom-primary btn-lg rounded-pill px-4 shadow-sm">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Login
+                </a>
+            </div>
+        }
+    </div>
+
+    <div id="ticket-summary-section" class="bg-white p-5 rounded-4 shadow-lg border-start border-4 border-custom-primary-subtle">
+        <h4 class="mb-4 fw-semibold text-dark">📊 Unresolved Tickets Summary</h4>
+        <div id="summary-table">
+            <div class="text-center text-muted">
+                <div class="spinner-border text-custom-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">Loading summary...</p>
+            </div>
         </div>
-    }
+    </div>
 </div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.get("/Home/TicketSummary", function (data) {
+                $("#summary-table").html(data);
+            });
+        });
+    </script>
+}
+
+<style>
+    :root {
+        --custom-primary: #6767d6;
+        --custom-primary-subtle: rgba(103, 103, 214, 0.2);
+    }
+
+    .text-custom-primary {
+        color: var(--custom-primary) !important;
+    }
+
+    .bg-custom-primary {
+        background-color: var(--custom-primary) !important;
+    }
+
+    .border-custom-primary-subtle {
+        border-color: var(--custom-primary-subtle) !important;
+    }
+
+    .btn-custom-primary {
+        background-color: var(--custom-primary);
+        color: white;
+        border: none;
+    }
+
+        .btn-custom-primary:hover {
+            background-color: #5656c2;
+            box-shadow: 0 0 12px rgba(103, 103, 214, 0.5);
+        }
+
+    .btn-outline-custom-primary {
+        border: 2px solid var(--custom-primary);
+        color: var(--custom-primary);
+        background-color: transparent;
+    }
+
+        .btn-outline-custom-primary:hover {
+            background-color: var(--custom-primary);
+            color: white;
+        }
+
+    .text-gradient {
+        background: linear-gradient(to right, #6767d6, #9494e8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .rounded-4 {
+        border-radius: 1rem !important;
+    }
+</style>
