@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SupportTicketingSystem.Data;
 using SupportTicketingSystem.Models;
@@ -10,15 +11,32 @@ namespace SupportTicketingSystem.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(
+                ILogger<HomeController> logger,
+                ApplicationDbContext context,
+                UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
         {
+            List<Ticket> recentTickets = new();
+
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                recentTickets = _context.Tickets
+                    .OrderByDescending(t => t.CreatedAt)
+                    .Take(10)
+                    .ToList();
+            }
+
+            ViewBag.RecentTickets = recentTickets;
+
             return View();
         }
 
