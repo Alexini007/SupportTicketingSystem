@@ -65,6 +65,16 @@ namespace SupportTicketingSystem.Controllers
                 return View("~/Views/Import/Import.cshtml");
             }
 
+            bool hasEmptyFields = ticketArray.Any(t =>
+                string.IsNullOrWhiteSpace(t["Subject"]?.ToString()) ||
+                string.IsNullOrWhiteSpace(t["Description"]?.ToString()));
+
+            if (hasEmptyFields)
+            {
+                ViewBag.Message = "One or more tickets have empty required fields (Subject or Description).";
+                return View("~/Views/Import/Import.cshtml");
+            }
+
             var validStatuses = new[] { "new", "open", "closed", "in_progress" };
             var validTeams = new[] { "support", "sales", "development" };
 
